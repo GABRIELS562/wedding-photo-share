@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  wedding-app:
+    image: wedding-photo-share:latest
+    container_name: wedding-photo-share
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    volumes:
+      # SSL certificates (when you set up Let's Encrypt)
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./certbot:/var/www/certbot:ro
+    restart: unless-stopped
+    # Resource limits for t2.micro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'    # Leave some CPU for system
+          memory: 800M   # Leave 200MB for system
+        reservations:
+          cpus: '0.2'
+          memory: 200M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
