@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <!-- Background -->
+  <rect width="390" height="844" fill="#faf8f5"/>
+
+  <!-- Header -->
+  <rect x="0" y="50" width="390" height="80" fill="#d4af37" opacity="0.1"/>
+  <text x="195" y="100" text-anchor="middle" fill="#d4af37" font-size="20" font-family="serif">Photo Gallery</text>
+
+  <!-- Main content -->
+  <rect x="20" y="160" width="350" height="600" fill="white" rx="15" stroke="#d4af37" stroke-width="1"/>
+
+  <!-- Gallery grid -->
+  <!-- Row 1 -->
+  <rect x="40" y="180" width="100" height="100" fill="#d4af37" opacity="0.3" rx="8"/>
+  <rect x="145" y="180" width="100" height="100" fill="#9caf88" opacity="0.3" rx="8"/>
+  <rect x="250" y="180" width="100" height="100" fill="#d4b5a0" opacity="0.3" rx="8"/>
+
+  <!-- Row 2 -->
+  <rect x="40" y="285" width="100" height="100" fill="#d4b5a0" opacity="0.4" rx="8"/>
+  <rect x="145" y="285" width="100" height="100" fill="#d4af37" opacity="0.4" rx="8"/>
+  <rect x="250" y="285" width="100" height="100" fill="#9caf88" opacity="0.4" rx="8"/>
+
+  <!-- Row 3 -->
+  <rect x="40" y="390" width="100" height="100" fill="#9caf88" opacity="0.3" rx="8"/>
+  <rect x="145" y="390" width="100" height="100" fill="#d4b5a0" opacity="0.3" rx="8"/>
+  <rect x="250" y="390" width="100" height="100" fill="#d4af37" opacity="0.3" rx="8"/>
+
+  <!-- Photo placeholders -->
+  <text x="90" y="235" text-anchor="middle" fill="white" font-size="20">📷</text>
+  <text x="195" y="235" text-anchor="middle" fill="white" font-size="20">💒</text>
+  <text x="300" y="235" text-anchor="middle" fill="white" font-size="20">💕</text>
+
+  <text x="90" y="340" text-anchor="middle" fill="white" font-size="20">👰</text>
+  <text x="195" y="340" text-anchor="middle" fill="white" font-size="20">🤵</text>
+  <text x="300" y="340" text-anchor="middle" fill="white" font-size="20">🎉</text>
+
+  <text x="90" y="445" text-anchor="middle" fill="white" font-size="20">💐</text>
+  <text x="195" y="445" text-anchor="middle" fill="white" font-size="20">🎊</text>
+  <text x="300" y="445" text-anchor="middle" fill="white" font-size="20">✨</text>
+
+  <!-- Stats -->
+  <text x="195" y="530" text-anchor="middle" fill="#666" font-size="14" font-family="sans-serif">127 Beautiful Memories</text>
+
+  <!-- Action buttons -->
+  <rect x="50" y="560" width="80" height="35" fill="#d4af37" rx="17"/>
+  <text x="90" y="582" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">💖 Like</text>
+
+  <rect x="140" y="560" width="80" height="35" fill="white" rx="17" stroke="#d4af37" stroke-width="1"/>
+  <text x="180" y="582" text-anchor="middle" fill="#d4af37" font-size="12" font-family="sans-serif">💬 Comment</text>
+
+  <rect x="230" y="560" width="80" height="35" fill="#9caf88" rx="17"/>
+  <text x="270" y="582" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">📤 Share</text>
+</svg>

@@ -1,0 +1,140 @@
+@import './animations.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --wedding-cream: #faf8f5;
+    --wedding-gold: #d4af37;
+    --wedding-gold-light: #f4e8b2;
+    --wedding-sage: #9caf88;
+    --wedding-sage-light: #b8c5a6;
+    --wedding-dusty: #d4b5a0;
+    --wedding-dusty-light: #e8d0c0;
+    --wedding-navy: #2c3e50;
+    --wedding-navy-light: #5d6d7e;
+
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-wedding-cream text-wedding-navy font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background: linear-gradient(135deg, var(--wedding-cream) 0%, #ffffff 50%, var(--wedding-cream) 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-wedding-navy;
+  }
+
+  .wedding-gradient {
+    background: linear-gradient(135deg, var(--wedding-gold-light) 0%, var(--wedding-dusty-light) 50%, var(--wedding-sage-light) 100%);
+  }
+
+  .wedding-text-gradient {
+    background: linear-gradient(135deg, var(--wedding-gold) 0%, var(--wedding-dusty) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-wedding-gold to-wedding-dusty text-white font-medium py-3 px-6 rounded-lg hover:from-wedding-gold hover:to-wedding-gold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-wedding-navy font-medium py-3 px-6 rounded-lg hover:bg-wedding-cream transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-wedding-gold/20 shadow-md hover:shadow-lg;
+  }
+
+  .btn-elegant {
+    @apply bg-gradient-to-r from-wedding-sage to-wedding-sage-light text-white font-medium py-3 px-6 rounded-lg hover:from-wedding-sage hover:to-wedding-sage transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-wedding-gold/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-gold focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm;
+  }
+
+  .card {
+    @apply bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-wedding-gold/20;
+  }
+
+  .card-elegant {
+    @apply bg-gradient-to-br from-white/95 to-wedding-cream/95 backdrop-blur-sm rounded-xl shadow-xl p-6 border border-wedding-gold/30;
+  }
+
+  .loading-spinner {
+    @apply animate-spin h-5 w-5 border-2 border-wedding-gold border-t-transparent rounded-full;
+  }
+
+  .wedding-header {
+    @apply font-script text-wedding-gold text-center;
+  }
+
+  .wedding-subtitle {
+    @apply font-accent text-wedding-navy-light text-center;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/70 border border-white/20;
+  }
+
+  .wedding-glass {
+    @apply backdrop-blur-lg bg-wedding-cream/80 border border-wedding-gold/20;
+  }
+
+  .elegant-shadow {
+    box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.1), 0 4px 6px -2px rgba(212, 175, 55, 0.05);
+  }
+
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  .sparkle-text {
+    position: relative;
+  }
+
+  .sparkle-text::after {
+    content: '✨';
+    position: absolute;
+    right: -20px;
+    top: -5px;
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+}

@@ -1,0 +1,88 @@
+# Docker Compose for Kirsten & Dale Wedding Photo Share - Production
+version: '3.8'
+
+services:
+  wedding-photos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_CLOUDINARY_CLOUD_NAME=${VITE_CLOUDINARY_CLOUD_NAME}
+        - VITE_CLOUDINARY_UPLOAD_PRESET=${VITE_CLOUDINARY_UPLOAD_PRESET}
+        - VITE_CLOUDINARY_API_KEY=${VITE_CLOUDINARY_API_KEY}
+        - VITE_CLOUDINARY_API_SECRET=${VITE_CLOUDINARY_API_SECRET}
+    container_name: kirsten-dale-wedding-photos
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # SSL certificates (when ready)
+      - ./ssl-certs:/etc/nginx/ssl:ro
+      # Nginx logs
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wedding-photos.rule=Host(`photos.jagdevops.co.za`)"
+      - "traefik.http.routers.wedding-photos.tls=true"
+      - "traefik.http.routers.wedding-photos.tls.certresolver=letsencrypt"
+      - "traefik.http.services.wedding-photos.loadbalancer.server.port=3001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  # Optional: Redis for session storage (if needed in future)
+  redis:
+    image: redis:7-alpine
+    container_name: wedding-photos-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD:-wedding2024}"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.2'
+
+  # Optional: Monitoring with simple health checks
+  monitoring:
+    image: nginx:alpine
+    container_name: wedding-photos-monitor
+    volumes:
+      - ./monitoring.html:/usr/share/nginx/html/index.html:ro
+    ports:
+      - "3002:80"
+    restart: unless-stopped
+    depends_on:
+      - wedding-photos
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

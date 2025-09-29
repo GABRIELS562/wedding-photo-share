@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144" viewBox="0 0 144 144">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf8f5"/>
+      <stop offset="100%" style="stop-color:#d4af37"/>
+    </linearGradient>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4b5a0"/>
+      <stop offset="100%" style="stop-color:#9caf88"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="72" cy="72" r="64" fill="url(#bgGradient)" stroke="#d4af37" stroke-width="2.25"/>
+
+  <!-- Wedding rings -->
+  <g transform="translate(72, 60.48)">
+    <circle cx="-8.64" cy="0" r="11.52" fill="none" stroke="#d4af37" stroke-width="3"/>
+    <circle cx="8.64" cy="0" r="11.52" fill="none" stroke="#d4af37" stroke-width="3"/>
+    <circle cx="-8.64" cy="0" r="5.76" fill="#d4af37" opacity="0.3"/>
+    <circle cx="8.64" cy="0" r="5.76" fill="#d4af37" opacity="0.3"/>
+  </g>
+
+  <!-- Heart -->
+  <g transform="translate(72, 90)">
+    <path d="M0,5.76 C-5.76,0 -11.52,0 -11.52,5.76 C-11.52,11.52 0,18 0,18 C0,18 11.52,11.52 11.52,5.76 C11.52,0 5.76,0 0,5.76 Z"
+          fill="url(#heartGradient)" opacity="0.8"/>
+  </g>
+
+  <!-- Decorative dots -->
+  <circle cx="36" cy="36" r="2.16" fill="#d4af37" opacity="0.6"/>
+  <circle cx="108" cy="36" r="2.16" fill="#d4af37" opacity="0.6"/>
+  <circle cx="36" cy="108" r="2.16" fill="#d4af37" opacity="0.6"/>
+  <circle cx="108" cy="108" r="2.16" fill="#d4af37" opacity="0.6"/>
+</svg>
