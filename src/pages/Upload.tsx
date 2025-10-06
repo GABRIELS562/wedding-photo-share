@@ -21,7 +21,7 @@ const Upload: React.FC = () => {
     date: 'October 31, 2024',
     location: 'Cape Point Vineyard, Noordhoek',
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    maxUploadsPerSession: 20,
+    maxUploadsPerSession: 60,
     welcomeMessage: 'Help us capture every magical moment of our special day'
   }
 
@@ -235,9 +235,11 @@ const Upload: React.FC = () => {
                 </div>
                 <div className="text-wedding-navy-light font-accent space-y-2">
                   <p>📸 Maximum file size: {(config.maxFileSize / 1024 / 1024).toFixed(0)}MB per photo</p>
-                  <p>🎨 Supported formats: JPEG, PNG, GIF, WebP</p>
+                  <p>🎥 Videos: 50MB max, 3 videos per session (30-45 seconds)</p>
+                  <p>🎨 Supported formats: JPEG, PNG, GIF, WebP, HEIC, MP4, MOV</p>
                   <p>💫 Upload up to {config.maxUploadsPerSession} photos per session</p>
-                  <p>❤️ All photos become part of our wedding album</p>
+                  <p className="text-sm text-wedding-sage italic mt-3">⚠️ Please keep videos short to help us stay within storage limits!</p>
+                  <p>❤️ All photos & videos become part of our wedding album</p>
                 </div>
               </div>
             </motion.div>

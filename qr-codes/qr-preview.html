@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Photo Upload QR Code</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .qr-code {
+            margin: 20px auto;
+            border: 5px solid #f0f0f0;
+            border-radius: 10px;
+            display: inline-block;
+            padding: 20px;
+            background: white;
+        }
+        .url {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            word-break: break-all;
+            color: #333;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f4f8;
+            border-radius: 10px;
+            color: #333;
+        }
+        .instructions h2 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 20px;
+        }
+        .instructions ol {
+            text-align: left;
+            color: #666;
+            line-height: 1.8;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .instructions {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Wedding Photo Share</h1>
+        <p>Scan this QR code to upload your photos!</p>
+        <div class="qr-code">
+            <img src="qr-gallery.png" alt="QR Code" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="url">
+            https://photos.jagdevops.co.za/gallery
+        </div>
+        <div class="instructions">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Open your phone's camera app</li>
+                <li>Point it at the QR code above</li>
+                <li>Tap the notification that appears</li>
+                <li>Upload your photos to share the memories!</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
+    
