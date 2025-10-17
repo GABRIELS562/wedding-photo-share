@@ -13,24 +13,22 @@ RUN apk add --no-cache python3 make g++
 # Copy package files first for better caching
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install ALL dependencies (including devDependencies needed for build)
+RUN npm ci && npm cache clean --force
 
 # Copy source code
 COPY . .
 
-# Build arguments for production build
+# Build arguments for production build (PUBLIC values only)
 ARG VITE_CLOUDINARY_CLOUD_NAME
 ARG VITE_CLOUDINARY_UPLOAD_PRESET
-ARG VITE_CLOUDINARY_API_KEY
-ARG VITE_CLOUDINARY_API_SECRET
 
 # Set environment variables for build
 ENV VITE_CLOUDINARY_CLOUD_NAME=${VITE_CLOUDINARY_CLOUD_NAME}
 ENV VITE_CLOUDINARY_UPLOAD_PRESET=${VITE_CLOUDINARY_UPLOAD_PRESET}
-ENV VITE_CLOUDINARY_API_KEY=${VITE_CLOUDINARY_API_KEY}
-ENV VITE_CLOUDINARY_API_SECRET=${VITE_CLOUDINARY_API_SECRET}
 ENV NODE_ENV=production
+
+# Note: API_KEY and API_SECRET removed - will be in backend only
 
 # Build the application
 RUN npm run build
