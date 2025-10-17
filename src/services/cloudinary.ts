@@ -21,20 +21,20 @@ export const uploadToCloudinary = async (
   }
   formData.append('tags', tags.join(','))
 
-  // Add context metadata
-  const context = {
-    uploader: uploaderName || 'guest',
-    caption: caption || '',
-    upload_date: new Date().toISOString(),
-    event: 'kirsten_dale_wedding',
-    approved: 'pending'
+  // Add context metadata as a single string (Cloudinary format: key1=value1|key2=value2)
+  const contextParts = []
+  if (uploaderName) {
+    contextParts.push(`uploader=${uploaderName}`)
   }
+  if (caption) {
+    contextParts.push(`caption=${caption}`)
+  }
+  contextParts.push(`upload_date=${new Date().toISOString()}`)
+  contextParts.push(`event=kirsten_dale_wedding`)
 
-  Object.entries(context).forEach(([key, value]) => {
-    if (value) {
-      formData.append(`context[${key}]`, value.toString())
-    }
-  })
+  if (contextParts.length > 0) {
+    formData.append('context', contextParts.join('|'))
+  }
 
   // Add transformation for automatic optimization
   formData.append('transformation', 'q_auto:good,f_auto')
