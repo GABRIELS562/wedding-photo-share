@@ -50,17 +50,7 @@ RUN mkdir -p /etc/nginx/ssl
 
 # Add health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost/ || exit 1
-
-# Create non-root user for security
-RUN addgroup -g 1001 -S wedding && \
-    adduser -S wedding -u 1001
-
-# Set ownership of nginx directories
-RUN chown -R wedding:wedding /var/cache/nginx /var/run /var/log/nginx /usr/share/nginx/html
-
-# Switch to non-root user
-USER wedding
+  CMD curl -f http://localhost:3001/ || exit 1
 
 # Expose port 3001 for wedding photo app
 EXPOSE 3001
