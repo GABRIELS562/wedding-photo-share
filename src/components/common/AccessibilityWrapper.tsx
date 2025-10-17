@@ -156,7 +156,7 @@ const AccessibilityWrapper: React.FC<AccessibilityWrapperProps> = ({ children })
         </motion.div>
       )}
 
-      <style jsx global>{`
+      <style>{`
         .high-contrast {
           filter: contrast(1.2);
         }

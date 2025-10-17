@@ -10,7 +10,7 @@ import {
   Eye,
   Calendar,
   User,
-  FileSize,
+  HardDrive,
   Check,
   X,
   MoreHorizontal,
@@ -21,7 +21,8 @@ import {
 } from 'lucide-react'
 import { Photo, PhotoFilter } from '../../types'
 import { usePhotoContext } from '../../context/PhotoContext'
-import { formatFileSize, formatDistanceToNow } from '../../utils/helpers'
+import { formatFileSize } from '../../utils/helpers'
+import { formatDistanceToNow } from 'date-fns'
 import PhotoLightbox from '../PhotoGallery/PhotoLightbox'
 import toast from 'react-hot-toast'
 
@@ -576,7 +577,7 @@ const PhotoListItem: React.FC<{
             <span>{formatDistanceToNow(photo.uploadedAt)}</span>
           </div>
           <div className="flex items-center space-x-1">
-            <FileSize className="h-3 w-3" />
+            <HardDrive className="h-3 w-3" />
             <span>{formatFileSize(photo.size)}</span>
           </div>
           <span>{photo.width} × {photo.height}</span>

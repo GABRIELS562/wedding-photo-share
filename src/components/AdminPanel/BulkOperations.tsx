@@ -109,7 +109,7 @@ const BulkOperations: React.FC = () => {
         toast.success('Photo batch created successfully!')
       }, 3000)
 
-      toast.info('Creating photo batch... This may take a few minutes.')
+      toast.loading('Creating photo batch... This may take a few minutes.')
     } catch (error) {
       console.error('Failed to create batch:', error)
       toast.error('Failed to create photo batch')
@@ -197,7 +197,7 @@ const BulkOperations: React.FC = () => {
   const downloadBatch = (batch: PhotoBatch) => {
     if (batch.status !== 'ready' || !batch.downloadUrl) return
 
-    toast.info('Starting download...')
+    toast.loading('Starting download...')
     // In a real implementation, this would download the actual ZIP file
     toast.success('Download started!')
   }
