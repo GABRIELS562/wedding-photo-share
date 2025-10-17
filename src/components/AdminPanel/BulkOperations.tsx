@@ -51,7 +51,7 @@ const BulkOperations: React.FC = () => {
     }
   }, [])
 
-  const uniqueUploaders = Array.from(new Set(photos.map(p => p.uploaderName).filter(Boolean))).sort()
+  const uniqueUploaders = Array.from(new Set(photos.map(p => p.uploaderName).filter((name): name is string => Boolean(name)))).sort()
 
   const getFilteredPhotos = () => {
     return photos.filter(photo => {
