@@ -198,15 +198,27 @@ const MobileOptimizedUpload: React.FC<MobileOptimizedUploadProps> = ({
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleUpload}
-                className="w-full py-4 bg-gradient-to-r from-wedding-gold to-wedding-dusty text-white font-accent font-medium rounded-xl elegant-shadow hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2 shimmer-effect"
+                animate={{
+                  boxShadow: [
+                    "0 4px 14px rgba(212, 175, 55, 0.4)",
+                    "0 6px 20px rgba(212, 175, 55, 0.6)",
+                    "0 4px 14px rgba(212, 175, 55, 0.4)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-full py-5 mt-4 bg-gradient-to-r from-wedding-gold to-wedding-dusty text-white font-accent font-bold text-lg rounded-xl shadow-2xl flex items-center justify-center space-x-2 border-2 border-white"
+                style={{
+                  fontSize: '18px',
+                  letterSpacing: '0.5px'
+                }}
               >
                 <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
+                  animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 >
-                  <Check className="h-5 w-5" />
+                  <Check className="h-6 w-6" />
                 </motion.div>
-                <span>✨ Upload {selectedFiles.length} Memory{selectedFiles.length > 1 ? 's' : ''} ✨</span>
+                <span>UPLOAD NOW</span>
               </motion.button>
             </motion.div>
           )}
