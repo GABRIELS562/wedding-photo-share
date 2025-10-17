@@ -4,7 +4,6 @@ import { Heart, Camera, Info, Users, Sparkles, Star } from 'lucide-react'
 import EnhancedPhotoUpload from '../components/PhotoUpload/EnhancedPhotoUpload'
 import MobileOptimizedUpload from '../components/PhotoUpload/MobileOptimizedUpload'
 import InstallPrompt from '../components/PWA/InstallPrompt'
-import { usePhotoUpload } from '../hooks/usePhotoUpload'
 import { usePhotoContext } from '../context/PhotoContext'
 import { Photo } from '../types'
 import toast from 'react-hot-toast'
@@ -14,7 +13,6 @@ const Upload: React.FC = () => {
   const [message, setMessage] = useState('')
   const [showNamePrompt, setShowNamePrompt] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
-  const { getEventConfig } = usePhotoUpload()
   const { addPhoto } = usePhotoContext()
   const config = {
     name: 'Kirsten & Dale',

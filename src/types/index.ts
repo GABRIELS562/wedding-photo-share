@@ -6,10 +6,13 @@ export interface Photo {
   uploadedAt: Date
   uploaderName?: string
   message?: string
+  caption?: string
   width: number
   height: number
   format: string
   size: number
+  tags?: string[]
+  context?: Record<string, any>
 }
 
 export interface UploadProgress {
@@ -27,6 +30,10 @@ export interface CloudinaryResponse {
   format: string
   bytes: number
   created_at: string
+  tags?: string[]
+  context?: {
+    custom?: Record<string, string>
+  }
 }
 
 export interface EventConfig {

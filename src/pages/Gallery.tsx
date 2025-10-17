@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Heart, Camera, Upload, Lock, Users, Star } from 'lucide-react'
+import { Heart, Camera, Lock, Star } from 'lucide-react'
 import { PhotoGallery } from '../components/PhotoGallery'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import { getPhotosFromStorage, removePhotoFromStorage } from '../services/storage'
