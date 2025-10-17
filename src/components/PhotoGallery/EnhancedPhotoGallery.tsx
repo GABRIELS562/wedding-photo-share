@@ -360,7 +360,7 @@ const EnhancedPhotoGallery: React.FC<EnhancedPhotoGalleryProps> = ({
           <FilterPanel
             filters={filters}
             onFiltersChange={setFilters}
-            availableUploaders={[...new Set(photos.map(p => p.uploaderName).filter(Boolean))]}
+            availableUploaders={[...new Set(photos.map(p => p.uploaderName).filter((name): name is string => Boolean(name)))]}
             onClose={() => setShowFilters(false)}
           />
         )}

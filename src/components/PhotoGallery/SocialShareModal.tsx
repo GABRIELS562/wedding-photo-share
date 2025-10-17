@@ -71,7 +71,7 @@ const SocialShareModal: React.FC<SocialShareModalProps> = ({ photo, onClose }) =
 
         {/* Social Share Buttons */}
         <div className="grid grid-cols-5 gap-3 mb-6">
-          <FacebookShareButton url={shareUrl} quote={shareDescription}>
+          <FacebookShareButton url={shareUrl} hashtag="#WeddingPhotos">
             <div className="flex flex-col items-center space-y-1">
               <FacebookIcon size={48} round />
               <span className="text-xs text-secondary-600">Facebook</span>
