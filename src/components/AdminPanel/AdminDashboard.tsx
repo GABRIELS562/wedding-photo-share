@@ -18,6 +18,7 @@ import {
   Shield
 } from 'lucide-react'
 import { useAdmin } from '../../contexts/AdminContext'
+import { usePhotoContext } from '../../context/PhotoContext'
 import { AdminDashboardStats } from '../../types/admin'
 import PhotoGalleryManager from './PhotoGalleryManager'
 import AnalyticsDashboard from './AnalyticsDashboard'
@@ -30,6 +31,7 @@ type AdminTab = 'overview' | 'gallery' | 'analytics' | 'bulk' | 'moderation' | '
 
 const AdminDashboard: React.FC = () => {
   const { state, logout, refreshSession } = useAdmin()
+  const { photos, updatePhoto, removePhoto } = usePhotoContext()
   const [activeTab, setActiveTab] = useState<AdminTab>('overview')
   const [dashboardStats, setDashboardStats] = useState<AdminDashboardStats | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -83,6 +85,41 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogout = () => {
     logout()
+  }
+
+  const handleApprovePhoto = (id: string) => {
+    const photo = photos.find(p => p.id === id)
+    if (photo) {
+      updatePhoto({ ...photo, approved: true, rejected: false })
+      toast.success('Photo approved')
+    }
+  }
+
+  const handleRejectPhoto = (id: string) => {
+    const photo = photos.find(p => p.id === id)
+    if (photo) {
+      updatePhoto({ ...photo, approved: false, rejected: true })
+      toast.success('Photo rejected')
+    }
+  }
+
+  const handleBulkAction = (action: 'approve' | 'reject' | 'delete', ids: string[]) => {
+    if (action === 'delete') {
+      ids.forEach(id => removePhoto(id))
+      toast.success(`${ids.length} photos deleted`)
+    } else if (action === 'approve') {
+      ids.forEach(id => {
+        const photo = photos.find(p => p.id === id)
+        if (photo) updatePhoto({ ...photo, approved: true, rejected: false })
+      })
+      toast.success(`${ids.length} photos approved`)
+    } else if (action === 'reject') {
+      ids.forEach(id => {
+        const photo = photos.find(p => p.id === id)
+        if (photo) updatePhoto({ ...photo, approved: false, rejected: true })
+      })
+      toast.success(`${ids.length} photos rejected`)
+    }
   }
 
   const tabs = [
@@ -211,9 +248,16 @@ const AdminDashboard: React.FC = () => {
               <DashboardOverview stats={dashboardStats} />
             )}
             {activeTab === 'gallery' && <PhotoGalleryManager />}
-            {activeTab === 'analytics' && <AnalyticsDashboard />}
+            {activeTab === 'analytics' && <AnalyticsDashboard photos={photos} />}
             {activeTab === 'bulk' && <BulkOperations />}
-            {activeTab === 'moderation' && <PhotoModeration />}
+            {activeTab === 'moderation' && (
+              <PhotoModeration
+                photos={photos}
+                onApprove={handleApprovePhoto}
+                onReject={handleRejectPhoto}
+                onBulkAction={handleBulkAction}
+              />
+            )}
             {activeTab === 'settings' && <EventConfiguration />}
           </motion.div>
         </AnimatePresence>
