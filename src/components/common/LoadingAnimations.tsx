@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Camera, Sparkles } from 'lucide-react'
+import { Heart, Camera, Sparkles, Image as ImageIcon } from 'lucide-react'
 
 export const HeartLoader: React.FC = () => {
   return (

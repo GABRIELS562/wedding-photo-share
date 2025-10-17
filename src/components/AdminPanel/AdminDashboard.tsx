@@ -20,10 +20,10 @@ import {
 import { useAdmin } from '../../contexts/AdminContext'
 import { AdminDashboardStats } from '../../types/admin'
 import PhotoGalleryManager from './PhotoGalleryManager'
-import AdminAnalytics from './AdminAnalytics'
+import AnalyticsDashboard from './AnalyticsDashboard'
 import BulkOperations from './BulkOperations'
 import PhotoModeration from './PhotoModeration'
-import AdminSettings from './AdminSettings'
+import EventConfiguration from './EventConfiguration'
 import toast from 'react-hot-toast'
 
 type AdminTab = 'overview' | 'gallery' | 'analytics' | 'bulk' | 'moderation' | 'settings'
@@ -211,10 +211,10 @@ const AdminDashboard: React.FC = () => {
               <DashboardOverview stats={dashboardStats} />
             )}
             {activeTab === 'gallery' && <PhotoGalleryManager />}
-            {activeTab === 'analytics' && <AdminAnalytics />}
+            {activeTab === 'analytics' && <AnalyticsDashboard />}
             {activeTab === 'bulk' && <BulkOperations />}
             {activeTab === 'moderation' && <PhotoModeration />}
-            {activeTab === 'settings' && <AdminSettings />}
+            {activeTab === 'settings' && <EventConfiguration />}
           </motion.div>
         </AnimatePresence>
       </div>

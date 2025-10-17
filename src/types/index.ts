@@ -13,6 +13,8 @@ export interface Photo {
   size: number
   tags?: string[]
   context?: Record<string, any>
+  approved?: boolean
+  rejected?: boolean
 }
 
 export interface UploadProgress {

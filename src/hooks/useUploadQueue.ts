@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react'
-import { UploadFile, UploadQueueItem, UploadStats } from '../types/upload'
+import { UploadQueueItem, UploadStats } from '../types/upload'
 import { compressImage, shouldCompress, generateThumbnail } from '../services/imageCompression'
 import { uploadToCloudinary } from '../services/cloudinary'
 import { v4 as uuidv4 } from 'uuid'
