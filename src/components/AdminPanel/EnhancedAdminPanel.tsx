@@ -8,8 +8,8 @@ import {
 import AnalyticsDashboard from './AnalyticsDashboard'
 import PhotoModeration from './PhotoModeration'
 import EventConfiguration from './EventConfiguration'
-import QRGenerator from './QRGenerator'
-import SecuritySettings from './SecuritySettings'
+// import QRGenerator from './QRGenerator' // TODO: Create this component
+// import SecuritySettings from './SecuritySettings' // TODO: Create this component
 import { Photo } from '../../types'
 import { format } from 'date-fns'
 import JSZip from 'jszip'
@@ -299,8 +299,11 @@ const EnhancedAdminPanel: React.FC<EnhancedAdminPanelProps> = ({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
+            className="bg-white rounded-xl shadow-sm p-8 text-center"
           >
-            <QRGenerator />
+            <QrCode className="h-16 w-16 mx-auto text-secondary-400 mb-4" />
+            <h3 className="text-xl font-medium text-secondary-900 mb-2">QR Code Generator</h3>
+            <p className="text-secondary-600">This feature will be available soon!</p>
           </motion.div>
         )}
 
@@ -310,8 +313,11 @@ const EnhancedAdminPanel: React.FC<EnhancedAdminPanelProps> = ({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
+            className="bg-white rounded-xl shadow-sm p-8 text-center"
           >
-            <SecuritySettings />
+            <Lock className="h-16 w-16 mx-auto text-secondary-400 mb-4" />
+            <h3 className="text-xl font-medium text-secondary-900 mb-2">Security Settings</h3>
+            <p className="text-secondary-600">This feature will be available soon!</p>
           </motion.div>
         )}
       </AnimatePresence>
