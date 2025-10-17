@@ -45,9 +45,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copy built application from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy wedding-specific assets
-COPY --from=builder /app/public/wedding-assets /usr/share/nginx/html/wedding-assets
-
 # Create directory for SSL certificates (if using Let's Encrypt)
 RUN mkdir -p /etc/nginx/ssl
 
