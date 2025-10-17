@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Toaster } from 'react-hot-toast'
 import { motion } from 'framer-motion'
 import Upload from './pages/Upload'
-import Gallery from './pages/Gallery'
 import Admin from './pages/Admin'
 import ErrorBoundary from './components/common/ErrorBoundary'
 import AccessibilityWrapper from './components/common/AccessibilityWrapper'
@@ -60,8 +59,9 @@ const App: React.FC = () => {
                 <Routes>
                   <Route path="/" element={<Navigate to="/upload" replace />} />
                   <Route path="/upload" element={<Upload />} />
-                  <Route path="/gallery" element={<Gallery />} />
                   <Route path="/admin" element={<Admin />} />
+                  {/* Gallery removed - view photos in Cloudinary dashboard */}
+                  <Route path="*" element={<Navigate to="/upload" replace />} />
                 </Routes>
               </div>
             </motion.div>
