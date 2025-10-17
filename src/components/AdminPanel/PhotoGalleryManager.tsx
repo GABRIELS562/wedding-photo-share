@@ -452,8 +452,8 @@ const PhotoGalleryManager: React.FC = () => {
       {/* Lightbox */}
       {lightboxPhoto && (
         <PhotoLightbox
+          photo={lightboxPhoto}
           photos={filteredAndSortedPhotos}
-          initialPhotoIndex={filteredAndSortedPhotos.findIndex(p => p.id === lightboxPhoto.id)}
           onClose={() => setLightboxPhoto(null)}
         />
       )}

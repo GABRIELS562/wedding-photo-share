@@ -5,6 +5,7 @@ interface PhotoContextType {
   photos: Photo[]
   loading: boolean
   addPhoto: (photo: Photo) => void
+  updatePhoto: (photo: Photo) => void
   removePhoto: (id: string) => void
   setPhotos: (photos: Photo[]) => void
   refreshPhotos: () => Promise<void>
@@ -32,6 +33,10 @@ export const PhotoProvider: React.FC<PhotoProviderProps> = ({ children }) => {
     setPhotos(prev => [...prev, photo])
   }, [])
 
+  const updatePhoto = useCallback((photo: Photo) => {
+    setPhotos(prev => prev.map(p => p.id === photo.id ? photo : p))
+  }, [])
+
   const removePhoto = useCallback((id: string) => {
     setPhotos(prev => prev.filter(p => p.id !== id))
   }, [])
@@ -51,7 +56,7 @@ export const PhotoProvider: React.FC<PhotoProviderProps> = ({ children }) => {
   }, [])
 
   return (
-    <PhotoContext.Provider value={{ photos, loading, addPhoto, removePhoto, setPhotos, refreshPhotos }}>
+    <PhotoContext.Provider value={{ photos, loading, addPhoto, updatePhoto, removePhoto, setPhotos, refreshPhotos }}>
       {children}
     </PhotoContext.Provider>
   )
