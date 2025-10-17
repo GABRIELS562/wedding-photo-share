@@ -36,8 +36,8 @@ export const uploadToCloudinary = async (
     formData.append('context', contextParts.join('|'))
   }
 
-  // Add transformation for automatic optimization
-  formData.append('transformation', 'q_auto:good,f_auto')
+  // Note: transformation parameter not allowed in unsigned uploads
+  // Transformations will be applied via upload preset settings in Cloudinary
 
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
