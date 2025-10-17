@@ -184,12 +184,30 @@ const Upload: React.FC = () => {
 
             {isMobile ? (
               <MobileOptimizedUpload
-                onFilesSelected={(files) => {
-                  // Handle mobile upload
-                  files.forEach(file => {
-                    // Process each file
-                    console.log('Processing:', file.name)
-                  })
+                onFilesSelected={async (files) => {
+                  // Upload each file to Cloudinary
+                  for (const file of files) {
+                    try {
+                      const { uploadToCloudinary } = await import('../services/cloudinary')
+                      toast.loading(`Uploading ${file.name}...`, { id: file.name })
+
+                      const photo = await uploadToCloudinary(
+                        file,
+                        (progress) => {
+                          toast.loading(`Uploading ${file.name}: ${progress}%`, { id: file.name })
+                        },
+                        uploaderName,
+                        message
+                      )
+
+                      handleUploadComplete(photo)
+                      toast.success(`${file.name} uploaded successfully!`, { id: file.name })
+                    } catch (error) {
+                      const errorMsg = error instanceof Error ? error.message : 'Upload failed'
+                      toast.error(`Failed to upload ${file.name}: ${errorMsg}`, { id: file.name })
+                      console.error('Upload error:', error)
+                    }
+                  }
                 }}
                 maxFiles={config.maxUploadsPerSession}
                 maxFileSize={config.maxFileSize}
