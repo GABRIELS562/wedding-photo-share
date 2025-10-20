@@ -27,12 +27,25 @@ const MobileOptimizedUpload: React.FC<MobileOptimizedUploadProps> = ({
 
   const processFiles = (files: File[]) => {
     const validFiles = files.filter(file => {
-      if (!file.type.startsWith('image/')) {
-        toast.error(`${file.name} is not an image`)
+      // Android compatibility: Check for valid image types
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/heic', 'image/heif']
+      const isValidType = file.type.startsWith('image/') || validTypes.some(type => file.type === type)
+
+      // Android sometimes doesn't set file.type correctly, check extension
+      const fileName = file.name.toLowerCase()
+      const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.heic', '.heif']
+      const hasValidExtension = validExtensions.some(ext => fileName.endsWith(ext))
+
+      if (!isValidType && !hasValidExtension) {
+        toast.error(`${file.name} is not a supported image format`)
         return false
       }
       if (file.size > maxFileSize) {
-        toast.error(`${file.name} is too large`)
+        toast.error(`${file.name} is too large (max ${(maxFileSize / 1024 / 1024).toFixed(0)}MB)`)
+        return false
+      }
+      if (file.size === 0) {
+        toast.error(`${file.name} appears to be empty`)
         return false
       }
       return true
@@ -169,7 +182,7 @@ const MobileOptimizedUpload: React.FC<MobileOptimizedUploadProps> = ({
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*"
+            accept="image/*,image/heic,image/heif,image/jpeg,image/jpg,image/png,image/webp"
             multiple
             onChange={handleFileSelect}
             className="hidden"
@@ -179,7 +192,7 @@ const MobileOptimizedUpload: React.FC<MobileOptimizedUploadProps> = ({
           <input
             ref={cameraInputRef}
             type="file"
-            accept="image/*"
+            accept="image/*,image/heic,image/heif"
             capture="environment"
             onChange={handleFileSelect}
             className="hidden"

@@ -74,11 +74,29 @@ export const uploadToCloudinary = async (
     })
 
     xhr.addEventListener('error', () => {
-      reject(new Error('Upload failed'))
+      reject(new Error('Network error - please check your connection and try again'))
     })
 
+    xhr.addEventListener('timeout', () => {
+      reject(new Error('Upload timed out - please try again'))
+    })
+
+    xhr.addEventListener('abort', () => {
+      reject(new Error('Upload cancelled'))
+    })
+
+    // Set timeout for mobile connections (60 seconds)
+    xhr.timeout = 60000
+
     xhr.open('POST', CLOUDINARY_URL)
-    xhr.send(formData)
+
+    // Android compatibility: Set Content-Type header explicitly
+    // Note: Don't set Content-Type for FormData, browser will set it with boundary
+    try {
+      xhr.send(formData)
+    } catch (error) {
+      reject(new Error('Failed to send upload request - file may be corrupted'))
+    }
   })
 }
 
