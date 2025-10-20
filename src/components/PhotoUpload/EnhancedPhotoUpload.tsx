@@ -178,7 +178,7 @@ const EnhancedPhotoUpload: React.FC<EnhancedPhotoUploadProps> = ({
 
             <div>
               <motion.h3
-                className="text-4xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-sage mb-3 drop-shadow-lg"
+                className="text-4xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-sage mb-4 drop-shadow-lg"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
@@ -193,13 +193,34 @@ const EnhancedPhotoUpload: React.FC<EnhancedPhotoUploadProps> = ({
               >
                 {isDragActive ? '✨ Drop your photos here ✨' : '📸 SHARE YOUR MEMORIES 📸'}
               </motion.h3>
-              <motion.p
-                className="text-wedding-navy font-bold text-xl mb-2"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+
+              <motion.div
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-gold text-white font-extrabold text-2xl rounded-2xl shadow-2xl border-4 border-white mb-4 cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    "0 8px 25px rgba(212, 175, 55, 0.5)",
+                    "0 12px 40px rgba(212, 175, 55, 0.8)",
+                    "0 8px 25px rgba(212, 175, 55, 0.5)"
+                  ]
+                }}
+                transition={{
+                  boxShadow: { duration: 2, repeat: Infinity }
+                }}
+                style={{
+                  backgroundSize: '200% 100%',
+                }}
               >
-                👇 Click here or drag & drop photos 👇
-              </motion.p>
+                <Upload className="h-8 w-8" />
+                <span className="drop-shadow-lg">CLICK TO UPLOAD PHOTOS</span>
+                <Upload className="h-8 w-8" />
+              </motion.div>
+
+              <p className="text-wedding-navy-light font-accent text-base mb-3">
+                or drag & drop photos anywhere in this box
+              </p>
+
               <p className="text-secondary-600 text-lg font-medium">
                 Max {(maxFileSize / 1024 / 1024).toFixed(0)}MB per photo • Up to {maxFiles} photos
               </p>
