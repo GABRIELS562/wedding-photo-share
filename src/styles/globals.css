@@ -60,6 +60,16 @@
     @apply bg-gradient-to-r from-wedding-sage to-wedding-sage-light text-white font-medium py-3 px-6 rounded-lg hover:from-wedding-sage hover:to-wedding-sage transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
   }
 
+  .wedding-btn-primary {
+    @apply bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-gold text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transform hover:scale-105 border-4 border-white/30 text-xl;
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease-in-out infinite;
+  }
+
+  .wedding-btn-primary:hover {
+    background-position: 100% 0;
+  }
+
   .input-field {
     @apply w-full px-4 py-3 border border-wedding-gold/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wedding-gold focus:border-transparent transition-all duration-300 bg-white/80 backdrop-blur-sm;
   }
@@ -136,5 +146,54 @@
     right: -20px;
     top: -5px;
     animation: sparkle 1.5s ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .prominent-cta {
+    position: relative;
+  }
+
+  .prominent-cta::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    padding: 4px;
+    background: linear-gradient(45deg, var(--wedding-gold), var(--wedding-dusty), var(--wedding-sage), var(--wedding-gold));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotateBorder 3s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.5);
+    }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes rotateBorder {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

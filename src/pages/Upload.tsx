@@ -135,11 +135,33 @@ const Upload: React.FC = () => {
               </div>
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full wedding-btn-primary text-lg font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    "0 0 25px rgba(212, 175, 55, 0.5)",
+                    "0 0 45px rgba(212, 175, 55, 0.8)",
+                    "0 0 25px rgba(212, 175, 55, 0.5)"
+                  ]
+                }}
+                transition={{
+                  boxShadow: { duration: 2, repeat: Infinity },
+                  scale: { duration: 0.2 }
+                }}
+                className="w-full wedding-btn-primary pulse-glow relative overflow-hidden group"
               >
-                ✨ Begin the Memory Journey ✨
+                <motion.span
+                  className="relative z-10 flex items-center justify-center gap-3 text-2xl font-extrabold tracking-wide"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Sparkles className="h-7 w-7 animate-sparkle" />
+                  <span className="drop-shadow-lg">BEGIN THE MEMORY JOURNEY</span>
+                  <Sparkles className="h-7 w-7 animate-sparkle" style={{animationDelay: '0.5s'}} />
+                </motion.span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer" />
               </motion.button>
             </form>
           </motion.div>

@@ -79,44 +79,89 @@ const MobileOptimizedUpload: React.FC<MobileOptimizedUploadProps> = ({
             transition={{ delay: 0.3, duration: 0.5, type: "spring" }}
             className="text-center mb-6"
           >
-            <h3 className="text-2xl font-script text-wedding-gold mb-2 sparkle-text">
-              Share Your Memories
-            </h3>
-            <p className="text-sm font-accent text-wedding-navy-light">
-              Every photo tells our story
-            </p>
+            <motion.h3
+              className="text-3xl font-script text-transparent bg-clip-text bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-gold mb-3 font-extrabold drop-shadow-lg"
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'linear'
+              }}
+              style={{
+                backgroundSize: '200% 200%'
+              }}
+            >
+              📸 SHARE YOUR MEMORIES 📸
+            </motion.h3>
+            <motion.p
+              className="text-base font-accent text-wedding-navy font-bold"
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              👇 Tap a button below to get started 👇
+            </motion.p>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
             <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.05, y: -4 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => fileInputRef.current?.click()}
-              className="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-white/90 to-wedding-cream/80 rounded-xl elegant-shadow hover:shadow-xl transition-all duration-300 border border-wedding-gold/20"
+              animate={{
+                boxShadow: [
+                  "0 4px 12px rgba(212, 175, 55, 0.3)",
+                  "0 6px 18px rgba(212, 175, 55, 0.5)",
+                  "0 4px 12px rgba(212, 175, 55, 0.3)"
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 2, repeat: Infinity }
+              }}
+              className="flex flex-col items-center justify-center p-8 bg-gradient-to-br from-wedding-gold/10 via-white to-wedding-cream/80 rounded-2xl elegant-shadow hover:shadow-2xl transition-all duration-300 border-2 border-wedding-gold/40 relative overflow-hidden group"
             >
               <motion.div
-                animate={{ rotate: [0, -5, 5, 0] }}
+                animate={{
+                  rotate: [0, -8, 8, 0],
+                  scale: [1, 1.15, 1]
+                }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <ImageIcon className="h-8 w-8 text-wedding-gold mb-2" />
+                <ImageIcon className="h-12 w-12 text-wedding-gold mb-3 drop-shadow-lg" />
               </motion.div>
-              <span className="text-sm font-accent font-medium text-wedding-navy">Gallery</span>
+              <span className="text-lg font-accent font-bold text-wedding-navy drop-shadow-sm">📱 GALLERY</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent group-active:animate-shimmer" />
             </motion.button>
 
             {isMobile && (
               <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => cameraInputRef.current?.click()}
-                className="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-white/90 to-wedding-sage-light/20 rounded-xl elegant-shadow hover:shadow-xl transition-all duration-300 border border-wedding-sage/20"
+                animate={{
+                  boxShadow: [
+                    "0 4px 12px rgba(156, 175, 136, 0.3)",
+                    "0 6px 18px rgba(156, 175, 136, 0.5)",
+                    "0 4px 12px rgba(156, 175, 136, 0.3)"
+                  ]
+                }}
+                transition={{
+                  boxShadow: { duration: 2, repeat: Infinity, delay: 0.5 }
+                }}
+                className="flex flex-col items-center justify-center p-8 bg-gradient-to-br from-wedding-sage/10 via-white to-wedding-sage-light/30 rounded-2xl elegant-shadow hover:shadow-2xl transition-all duration-300 border-2 border-wedding-sage/40 relative overflow-hidden group"
               >
                 <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 5, -5, 0]
+                  }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <Camera className="h-8 w-8 text-wedding-sage mb-2" />
+                  <Camera className="h-12 w-12 text-wedding-sage mb-3 drop-shadow-lg" />
                 </motion.div>
-                <span className="text-sm font-accent font-medium text-wedding-navy">Camera</span>
+                <span className="text-lg font-accent font-bold text-wedding-navy drop-shadow-sm">📷 CAMERA</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent group-active:animate-shimmer" />
               </motion.button>
             )}
           </div>
@@ -195,30 +240,37 @@ const MobileOptimizedUpload: React.FC<MobileOptimizedUploadProps> = ({
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleUpload}
                 animate={{
                   boxShadow: [
-                    "0 4px 14px rgba(212, 175, 55, 0.4)",
-                    "0 6px 20px rgba(212, 175, 55, 0.6)",
-                    "0 4px 14px rgba(212, 175, 55, 0.4)"
+                    "0 8px 20px rgba(212, 175, 55, 0.5)",
+                    "0 12px 35px rgba(212, 175, 55, 0.8)",
+                    "0 8px 20px rgba(212, 175, 55, 0.5)"
                   ]
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-full py-5 mt-4 bg-gradient-to-r from-wedding-gold to-wedding-dusty text-white font-accent font-bold text-lg rounded-xl shadow-2xl flex items-center justify-center space-x-2 border-2 border-white"
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-full py-6 mt-4 bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-gold text-white font-accent font-extrabold text-2xl rounded-2xl shadow-2xl flex items-center justify-center space-x-3 border-4 border-white pulse-glow relative overflow-hidden group"
                 style={{
-                  fontSize: '18px',
-                  letterSpacing: '0.5px'
+                  letterSpacing: '1px',
+                  backgroundSize: '200% 100%',
                 }}
               >
                 <motion.div
-                  animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
+                  animate={{
+                    scale: [1, 1.4, 1],
+                    rotate: [0, 360]
+                  }}
+                  transition={{
+                    scale: { duration: 1, repeat: Infinity },
+                    rotate: { duration: 2, repeat: Infinity }
+                  }}
                 >
-                  <Check className="h-6 w-6" />
+                  <Check className="h-8 w-8" />
                 </motion.div>
-                <span>UPLOAD NOW</span>
+                <span className="drop-shadow-lg relative z-10">🚀 UPLOAD NOW 🚀</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent group-active:animate-shimmer" />
               </motion.button>
             </motion.div>
           )}

@@ -177,13 +177,30 @@ const EnhancedPhotoUpload: React.FC<EnhancedPhotoUploadProps> = ({
             </motion.div>
 
             <div>
-              <h3 className="text-2xl font-display font-bold text-secondary-900 mb-2">
-                {isDragActive ? '✨ Drop your photos here' : 'Share Your Memories'}
-              </h3>
-              <p className="text-secondary-600 mb-1">
-                Drag & drop photos or tap to select
-              </p>
-              <p className="text-sm text-secondary-500">
+              <motion.h3
+                className="text-4xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-wedding-gold via-wedding-dusty to-wedding-sage mb-3 drop-shadow-lg"
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: 'linear'
+                }}
+                style={{
+                  backgroundSize: '200% 200%'
+                }}
+              >
+                {isDragActive ? '✨ Drop your photos here ✨' : '📸 SHARE YOUR MEMORIES 📸'}
+              </motion.h3>
+              <motion.p
+                className="text-wedding-navy font-bold text-xl mb-2"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                👇 Click here or drag & drop photos 👇
+              </motion.p>
+              <p className="text-secondary-600 text-lg font-medium">
                 Max {(maxFileSize / 1024 / 1024).toFixed(0)}MB per photo • Up to {maxFiles} photos
               </p>
             </div>
@@ -237,14 +254,32 @@ const EnhancedPhotoUpload: React.FC<EnhancedPhotoUploadProps> = ({
                 </button>
               )}
               {!isProcessing && queue.some(item => item.status === 'pending') && (
-                <button
+                <motion.button
                   onClick={processQueue}
-                  className="btn-primary text-sm flex items-center space-x-1"
+                  className="btn-primary text-lg font-extrabold flex items-center space-x-3 px-8 py-4 pulse-glow relative overflow-hidden group"
                   aria-label="Start upload"
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 20px rgba(212, 175, 55, 0.6)",
+                      "0 0 40px rgba(212, 175, 55, 0.9)",
+                      "0 0 20px rgba(212, 175, 55, 0.6)"
+                    ]
+                  }}
+                  transition={{
+                    boxShadow: { duration: 1.5, repeat: Infinity },
+                  }}
                 >
-                  <Upload className="h-4 w-4" />
-                  <span>Start Upload</span>
-                </button>
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                  >
+                    <Upload className="h-6 w-6" />
+                  </motion.div>
+                  <span className="tracking-wide">🚀 START UPLOAD NOW 🚀</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:animate-shimmer" />
+                </motion.button>
               )}
             </div>
           </div>
