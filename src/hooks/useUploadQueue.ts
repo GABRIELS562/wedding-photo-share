@@ -171,13 +171,17 @@ export const useUploadQueue = () => {
     }
   }
 
+  const queueRef = useRef(queue)
+  queueRef.current = queue
+
   const processQueue = useCallback(async () => {
     if (isProcessing) return
 
     setIsProcessing(true)
 
     while (true) {
-      const pendingItems = Array.from(queue.values())
+      // Use ref to get the latest queue state, not stale closure
+      const pendingItems = Array.from(queueRef.current.values())
         .filter(item => item.status === 'pending' && !processingRef.current.has(item.id))
         .sort((a, b) => a.priority - b.priority)
         .slice(0, MAX_CONCURRENT_UPLOADS - processingRef.current.size)
@@ -200,7 +204,7 @@ export const useUploadQueue = () => {
     }
 
     setIsProcessing(false)
-  }, [queue, isProcessing])
+  }, [isProcessing])
 
   const retryUpload = useCallback((id: string) => {
     setQueue(prev => {
